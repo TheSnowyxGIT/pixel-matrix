@@ -55,6 +55,8 @@ const colorFromHSV = Color.FromHSV(0.05, 0.66, 1);
 
 // Retrieve uint32 data from color
 const uint32Color = colorFromRGB.getUint32();
+// Retrieve rgb data from color
+const [r, b, g] = colorFromRGB.getRGB();
 ```
 
 ## Options
@@ -96,3 +98,4 @@ const matrix = new PixelMatrix(8, 8, options);
   - Various utility methods to create Color instances from different formats.
 - **Methods**:
   - `getUint32(): number`: Convert color to uint32 format.
+  - `getRGB(): [number, number, number]`: Convert color to rgb format.

@@ -99,4 +99,8 @@ export class Color {
     const color = (this.g_ << 16) | (this.r_ << 8) | this.b_;
     return color;
   }
+
+  public getRGB() {
+    return [this.r_, this.g_, this.b_];
+  }
 }
