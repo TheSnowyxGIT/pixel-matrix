@@ -1,0 +1,37 @@
+{
+  "name": "pixel-matrix",
+  "version": "1.0.0",
+  "description": "PixelMatrix and Color management utility for 2D graphics and LED matrix handling.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "release": "changeset publish"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheSnowyxGIT/pixel-matrix.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TheSnowyxGIT/pixel-matrix/issues"
+  },
+  "homepage": "https://github.com/TheSnowyxGIT/pixel-matrix#readme",
+  "author": "adrienpgd",
+  "license": "ISC",
+  "devDependencies": {
+    "@changesets/cli": "^2.26.2",
+    "@types/node": "^20.8.4"
+  },
+  "keywords": [
+    "PixelMatrix",
+    "Color",
+    "2D graphics",
+    "LED matrix",
+    "RGBA",
+    "HSV",
+    "Color conversion"
+  ]
+}
