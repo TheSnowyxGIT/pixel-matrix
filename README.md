@@ -67,7 +67,7 @@ const [r, b, g] = colorFromRGB.getRGB();
 
 - `x_mirrored` (default `false`): Mirror the matrix horizontally.
 - `y_mirrored` (default `false`): Mirror the matrix vertically.
-- `zigzag` (default `true`): Enable zigzag rendering.
+- `zigzag` (default `false`): Enable zigzag rendering.
 
 Example:
 
@@ -90,7 +90,11 @@ const matrix = new PixelMatrix(8, 8, options);
   - `fillColor(color: Color): void`: Fill the entire matrix with a specified color.
   - `getCoord(index: number): Point`: Get matrix coordinates from a linear index.
   - `getIndex(point: Point)`: number: Get linear index from matrix coordinates.
+  - `setMatrix(grayScale: number[][], color: Color, option?: SetMatrixOption)`: Apply matrix data from a 2D array.
   - `ToArray(): Uint32Array`: Convert matrix data to a typed array.
+- `SetMatrixOption`
+  - `xOffset` (default `0`): Offset of the matrix on the x-axis.
+  - `yOffset` (default `0`): Offset of the matrix on the y-axis.
 
 ### Class: Color
 

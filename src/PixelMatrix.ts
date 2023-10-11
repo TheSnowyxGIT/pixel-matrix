@@ -13,6 +13,11 @@ interface MatrixOptions {
   zigzag?: boolean;
 }
 
+type SetMatrixOption = {
+  xOffset?: number;
+  yOffset?: number;
+};
+
 export class PixelMatrix {
   static FromBuffer(
     arrayBuffer: ArrayBuffer,
@@ -41,7 +46,7 @@ export class PixelMatrix {
     const defaultOptions: MatrixOptions = {
       x_mirrored: false,
       y_mirrored: false,
-      zigzag: true,
+      zigzag: false,
     };
     this.options_ = { ...defaultOptions, ...options };
 
@@ -81,6 +86,26 @@ export class PixelMatrix {
     const color_uint32 = color.getUint32();
     for (let i = 0; i < this.width_ * this.height_; i++) {
       this.pixels_[i] = color_uint32;
+    }
+  }
+
+  public setMatrix(
+    grayScale: number[][],
+    color: Color,
+    option?: SetMatrixOption
+  ): void {
+    option = option ?? {};
+    option.xOffset = option.xOffset ?? 0;
+    option.yOffset = option.yOffset ?? 0;
+    for (let y = 0; y < Math.min(grayScale.length, this.height_); y++) {
+      for (let x = 0; x < Math.min(grayScale[y].length, this.width_); x++) {
+        if (grayScale[y][x] > 0) {
+          this.setColor(
+            { x: x + option.xOffset, y: y },
+            Color.colorWithRatio(color, grayScale[y][x])
+          );
+        }
+      }
     }
   }
 
