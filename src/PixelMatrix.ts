@@ -101,7 +101,7 @@ export class PixelMatrix {
       for (let x = 0; x < Math.min(grayScale[y].length, this.width_); x++) {
         if (grayScale[y][x] > 0) {
           this.setColor(
-            { x: x + option.xOffset, y: y },
+            { x: x + option.xOffset, y: y + option.yOffset },
             Color.colorWithRatio(color, grayScale[y][x])
           );
         }
