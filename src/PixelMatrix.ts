@@ -75,6 +75,10 @@ export class PixelMatrix {
     return Color.FromUint32(this.pixels_[index]);
   }
 
+  public clear(): void {
+    this.fillColor(Color.Black);
+  }
+
   public setColor(point: Point, color: Color): void {
     if (!this.isOutOfBound(point)) {
       const index = this.getIndex(point);
@@ -103,6 +107,11 @@ export class PixelMatrix {
           this.setColor(
             { x: x + option.xOffset, y: y + option.yOffset },
             Color.colorWithRatio(color, grayScale[y][x])
+          );
+        } else {
+          this.setColor(
+            { x: x + option.xOffset, y: y + option.yOffset },
+            Color.Black
           );
         }
       }
