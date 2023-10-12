@@ -1,6 +1,6 @@
 {
   "name": "pixels-matrix",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "PixelMatrix and Color management utility for 2D graphics and LED matrix handling.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
