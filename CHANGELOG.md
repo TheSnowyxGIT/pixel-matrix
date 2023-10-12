@@ -1,5 +1,11 @@
 # pixels-matrix
 
+## 1.0.4
+
+### Patch Changes
+
+- e18fae1: fix yOffset
+
 ## 1.0.3
 
 ### Patch Changes
