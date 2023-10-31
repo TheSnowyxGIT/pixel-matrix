@@ -1,5 +1,11 @@
 # pixels-matrix
 
+## 1.0.6
+
+### Patch Changes
+
+- 2231476: fix uint32
+
 ## 1.0.5
 
 ### Patch Changes
