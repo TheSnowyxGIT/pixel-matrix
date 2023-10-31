@@ -52,8 +52,8 @@ export class Color {
    */
   static FromUint32(uint32: number): Color {
     return new Color(
-      (uint32 >> 8) & 0xff,
       (uint32 >> 16) & 0xff,
+      (uint32 >> 8) & 0xff,
       uint32 & 0xff
     );
   }
@@ -96,7 +96,7 @@ export class Color {
   }
 
   public getUint32() {
-    const color = (this.g_ << 16) | (this.r_ << 8) | this.b_;
+    const color = (this.r_ << 16) | (this.g_ << 8) | this.b_;
     return color;
   }
 
