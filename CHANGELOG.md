@@ -1,5 +1,12 @@
 # pixels-matrix
 
+## 1.0.5
+
+### Patch Changes
+
+- f7cb3f8: add clear()
+  fix setMatrix
+
 ## 1.0.4
 
 ### Patch Changes
