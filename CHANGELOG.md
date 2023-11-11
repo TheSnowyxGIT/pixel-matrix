@@ -1,5 +1,11 @@
 # pixels-matrix
 
+## 1.0.7
+
+### Patch Changes
+
+- 0ac5fc5: add src to package
+
 ## 1.0.6
 
 ### Patch Changes
