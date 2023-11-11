@@ -137,8 +137,8 @@ export class PixelMatrix {
   }
 
   public getIndex(point: Point): number {
-    let x = point.x;
-    let y = point.y;
+    let x = Math.floor(point.x);
+    let y = Math.floor(point.y);
     if (this.options_.x_mirrored) {
       x = this.width_ - x - 1;
     }
