@@ -1,5 +1,11 @@
 # pixels-matrix
 
+## 1.0.10
+
+### Patch Changes
+
+- 9237ea4: fix blend
+
 ## 1.0.9
 
 ### Patch Changes
