@@ -1,5 +1,11 @@
 # pixels-matrix
 
+## 1.0.9
+
+### Patch Changes
+
+- d4f624c: handle blend color and alphas
+
 ## 1.0.8
 
 ### Patch Changes
