@@ -110,7 +110,7 @@ export class PixelMatrix {
       for (let x = 0; x < grayScale[y].length; x++) {
         const realX = x + option.xOffset;
         const realY = y + option.yOffset;
-        if (!this.isOutOfBound({ x: realX, y: realY })) {
+        if (this.isOutOfBound({ x: realX, y: realY })) {
           continue;
         }
         if (grayScale[y][x] > 0) {
