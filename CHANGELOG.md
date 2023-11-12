@@ -1,5 +1,11 @@
 # pixels-matrix
 
+## 1.0.12
+
+### Patch Changes
+
+- fca912d: fix setMatrix
+
 ## 1.0.11
 
 ### Patch Changes
