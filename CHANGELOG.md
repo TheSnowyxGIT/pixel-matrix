@@ -1,5 +1,11 @@
 # pixels-matrix
 
+## 1.0.8
+
+### Patch Changes
+
+- 8603c78: fix round corrd
+
 ## 1.0.7
 
 ### Patch Changes
