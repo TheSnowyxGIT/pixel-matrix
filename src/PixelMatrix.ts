@@ -106,11 +106,14 @@ export class PixelMatrix {
     option = option ?? {};
     option.xOffset = option.xOffset ?? 0;
     option.yOffset = option.yOffset ?? 0;
-    for (let y = 0; y < Math.min(grayScale.length, this.height_); y++) {
-      for (let x = 0; x < Math.min(grayScale[y].length, this.width_); x++) {
+    for (let y = 0; y < grayScale.length; y++) {
+      for (let x = 0; x < grayScale[y].length; x++) {
+        const realX = x + option.xOffset;
+        const realY = y + option.yOffset;
+        if (!this.isOutOfBound({ x: realX, y: realY })) {
+          continue;
+        }
         if (grayScale[y][x] > 0) {
-          const realX = x + option.xOffset;
-          const realY = y + option.yOffset;
           const copyColor = Color.fromColor(color);
           copyColor.a = grayScale[y][x] * (copyColor.a / 255) * 255;
           const currentColor = this.getColor({ x: realX, y: realY });
