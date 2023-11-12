@@ -1,5 +1,11 @@
 # pixels-matrix
 
+## 1.0.13
+
+### Patch Changes
+
+- 82be307: fix setMatrix again
+
 ## 1.0.12
 
 ### Patch Changes
