@@ -110,7 +110,7 @@ export class PixelMatrix {
       for (let x = 0; x < Math.min(grayScale[y].length, this.width_); x++) {
         if (grayScale[y][x] > 0) {
           const copyColor = Color.fromColor(color);
-          copyColor.a = grayScale[y][x] * copyColor.a;
+          copyColor.a = grayScale[y][x] * (copyColor.a / 255) * 255;
           const currentColor = this.getColor({ x, y });
           const blendedColor = Color.blendColor(currentColor, copyColor);
 
