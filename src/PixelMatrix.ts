@@ -82,14 +82,19 @@ export class PixelMatrix {
   public setColor(point: Point, color: Color): void {
     if (!this.isOutOfBound(point)) {
       const index = this.getIndex(point);
-      this.pixels_[index] = color.getUint32();
+      this.pixels_[index] = Color.blendColor(
+        this.getColor(point),
+        color
+      ).getUint32();
     }
   }
 
   public fillColor(color: Color): void {
-    const color_uint32 = color.getUint32();
     for (let i = 0; i < this.width_ * this.height_; i++) {
-      this.pixels_[i] = color_uint32;
+      this.pixels_[i] = Color.blendColor(
+        Color.FromUint32(this.pixels_[i]),
+        color
+      ).getUint32();
     }
   }
 
@@ -104,14 +109,14 @@ export class PixelMatrix {
     for (let y = 0; y < Math.min(grayScale.length, this.height_); y++) {
       for (let x = 0; x < Math.min(grayScale[y].length, this.width_); x++) {
         if (grayScale[y][x] > 0) {
+          const copyColor = Color.fromColor(color);
+          copyColor.a = grayScale[y][x] * copyColor.a;
+          const currentColor = this.getColor({ x, y });
+          const blendedColor = Color.blendColor(currentColor, copyColor);
+
           this.setColor(
             { x: x + option.xOffset, y: y + option.yOffset },
-            Color.colorWithRatio(color, grayScale[y][x])
-          );
-        } else {
-          this.setColor(
-            { x: x + option.xOffset, y: y + option.yOffset },
-            Color.Black
+            blendedColor
           );
         }
       }

@@ -3,6 +3,20 @@ export class Color {
   private r_: number;
   private g_: number;
   private b_: number;
+  private a_: number = 255;
+
+  static fromColor(color: Color): Color {
+    return new Color(color.r_, color.g_, color.b_, color.a_);
+  }
+
+  static blendColor(underColor: Color, upperColor: Color): Color {
+    const alpha = upperColor.a_ / 255;
+    const invAlpha = 1 - alpha;
+    const r = Math.round(underColor.r_ * invAlpha + upperColor.r_ * alpha);
+    const g = Math.round(underColor.g_ * invAlpha + upperColor.g_ * alpha);
+    const b = Math.round(underColor.b_ * invAlpha + upperColor.b_ * alpha);
+    return new Color(r, g, b);
+  }
 
   /**
    * Return the Color associate to the given HSV
@@ -10,7 +24,7 @@ export class Color {
    * @param s saturation [0 <= h <= 1]
    * @param v value [0 <= h <= 1]
    */
-  static FromHSV(h: number, s: number, v: number): Color {
+  static FromHSV(h: number, s: number, v: number, a: number = 255): Color {
     let r = 0;
     let g = 0;
     let b = 0;
@@ -43,7 +57,8 @@ export class Color {
     return new Color(
       Math.round(r * 255),
       Math.round(g * 255),
-      Math.round(b * 255)
+      Math.round(b * 255),
+      a
     );
   }
 
@@ -62,14 +77,16 @@ export class Color {
    * Return the Color associate to the given hexadecimal string
    */
   static FromHEX(hex: string): Color {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result
-      ? new Color(
-          parseInt(result[1], 16),
-          parseInt(result[2], 16),
-          parseInt(result[3], 16)
-        )
-      : new Color(255, 255, 255);
+    const regex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})?$/i;
+    const result = regex.exec(hex);
+    if (!result) {
+      throw new Error("Invalid HEX color");
+    }
+    const r = parseInt(result[1], 16);
+    const g = parseInt(result[2], 16);
+    const b = parseInt(result[3], 16);
+    const a = result[4] ? parseInt(result[4], 16) : 255;
+    return new Color(r, g, b, a);
   }
 
   /**
@@ -79,8 +96,11 @@ export class Color {
     return new Color(r, g, b);
   }
 
-  static colorWithRatio(color: Color, ratio: number): Color {
-    return new Color(color.r_ * ratio, color.g_ * ratio, color.b_ * ratio);
+  /**
+   * Return the Color associate to the given RGBA
+   */
+  static FromRGBA(r: number, g: number, b: number, a: number): Color {
+    return new Color(r, g, b, a);
   }
 
   static Black: Color = Color.FromHEX("#000000");
@@ -89,10 +109,18 @@ export class Color {
   static Green: Color = Color.FromHEX("#00ff00");
   static Blue: Color = Color.FromHEX("#0000ff");
 
-  constructor(r: number, g: number, b: number) {
+  constructor(r: number, g: number, b: number, a: number = 255) {
     this.r_ = r;
     this.g_ = g;
     this.b_ = b;
+    this.a_ = a;
+  }
+
+  public get a() {
+    return this.a_;
+  }
+  public set a(a: number) {
+    this.a_ = a;
   }
 
   public getUint32() {
@@ -102,5 +130,9 @@ export class Color {
 
   public getRGB() {
     return [this.r_, this.g_, this.b_];
+  }
+
+  public getRGBA() {
+    return [this.r_, this.g_, this.b_, this.a_];
   }
 }
